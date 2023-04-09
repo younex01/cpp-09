@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yelousse <yelousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:46:08 by yelousse          #+#    #+#             */
-/*   Updated: 2023/04/09 10:19:30 by youness          ###   ########.fr       */
+/*   Updated: 2023/04/09 17:10:52 by yelousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,28 @@ int main(int ac, char **av)
         {
             size_t pos = 0;
             std::string date, value;
-            float nb, result;
+            float nb, result = 0.0;
             std::string year, month, day;
-            while ((pos = line.find("|")) != std::string::npos) {
+            if (line.find("|") == std::string::npos)
+            {
+                std::cout << "Error: bad input => " << line << std::endl;
+            }
+            else if ((pos = line.find("|")) != std::string::npos) {
                 date = line.substr(0, pos);
                 value = line.erase(0, pos + 1);
                 nb = std::atof(value.c_str());
                 // parse the date
                 year = date.substr(0, 4);
+                day = date.substr(8, 10);
                 month = date.substr(5, 6);
-                std::cout << year  << "-" << month << std::endl;
+                month = month.erase(2,4);
                 // parse the value
-                if (nb > 1000)
+                if (day >= "32" || month > "12" || (year <= "2009" && month <= "01" && day < "02"))
+                {
+                    std::cout << "Error: bad input => ";
+                    std::cout << year << "-" << month << "-" << day << std::endl;
+                }
+                else if (nb > 1000)
                     std::cout << "Error: too large a number." << std::endl;
                 else if (nb < 0)
                     std::cout << "Error: not a positive number." << std::endl;
