@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:46:08 by yelousse          #+#    #+#             */
-/*   Updated: 2023/04/09 09:35:54 by youness          ###   ########.fr       */
+/*   Updated: 2023/04/09 10:19:30 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,16 @@ int main(int ac, char **av)
             size_t pos = 0;
             std::string date, value;
             float nb, result;
+            std::string year, month, day;
             while ((pos = line.find("|")) != std::string::npos) {
                 date = line.substr(0, pos);
                 value = line.erase(0, pos + 1);
                 nb = std::atof(value.c_str());
+                // parse the date
+                year = date.substr(0, 4);
+                month = date.substr(5, 6);
+                std::cout << year  << "-" << month << std::endl;
+                // parse the value
                 if (nb > 1000)
                     std::cout << "Error: too large a number." << std::endl;
                 else if (nb < 0)
