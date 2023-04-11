@@ -6,12 +6,12 @@
 #    By: yelousse <yelousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/09 17:35:03 by yelousse          #+#    #+#              #
-#    Updated: 2023/04/09 17:35:58 by yelousse         ###   ########.fr        #
+#    Updated: 2023/04/10 21:19:55 by yelousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.cpp RPN.cpp
-NAME = btc
+NAME = RPN
 
 OBJCS = ${SRC:.cpp=.o}
 

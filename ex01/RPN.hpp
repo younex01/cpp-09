@@ -6,13 +6,14 @@
 /*   By: yelousse <yelousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 17:35:08 by yelousse          #+#    #+#             */
-/*   Updated: 2023/04/09 17:36:47 by yelousse         ###   ########.fr       */
+/*   Updated: 2023/04/10 21:41:03 by yelousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RPN_HPP
 # define RPN_HPP
 
-
+#include <iostream>
+#include <stack>
 
 #endif
