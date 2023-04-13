@@ -6,7 +6,7 @@
 /*   By: yelousse <yelousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 17:34:58 by yelousse          #+#    #+#             */
-/*   Updated: 2023/04/10 21:56:42 by yelousse         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:22:38 by yelousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,57 @@ int main(int ac, char **av)
     {
         int end, tmp, start = -1;
         std::string k, str = av[1];
-
         std::stack<std::string> s;
         tmp = -1;
         end = 0;
+        int result, check = 0;
         while(end != -1)
         {
             end = tmp;
             start = end + 1;
             end = str.find(" ", start);
-            std::cout << str.substr(start, end - start) << std::endl;
+            // std::cout << str.substr(start, end - start) << std::endl;
             k = str.substr(start, end - start);
-            c = k.c_str();
-            // if (c.c_str() >= '0' )
-            if (((*)c) >= "0")
+            if(k.find_first_of("0123456789/*-+") != std::string::npos && k.size() == 1)
+            {
+                if (k.find_first_of("/*-+") != std::string::npos)
+                {
+                    if (check < 2)
+                    {
+                        std::cout << "Error" << std::endl;
+                        return (1);
+                    }
+                    result = std::atoi(s.top().c_str());
+                    s.pop();
+                    if (k.find_first_of("/") != std::string::npos)
+                        result = std::atoi(s.top().c_str()) / result;
+                    if (k.find_first_of("+") != std::string::npos)
+                        result = std::atoi(s.top().c_str()) + result;
+                    if (k.find_first_of("-") != std::string::npos)
+                        result = std::atoi(s.top().c_str()) - result;
+                    if (k.find_first_of("*") != std::string::npos)
+                        result = std::atoi(s.top().c_str()) * result;
+                    s.pop();
+                    s.push(std::to_string(result));
+                }
+                else
+                {
+                    s.push(k);
+                    check++;
+                }
+            }
+            else
+            {
+                std::cout << "Error" << std::endl;
+                return (1);
+            }
             tmp = end;
+        }
+        // std::cout << "<----------->\n";
+        while(s.size() != 0)
+        {
+            std::cout << s.top() << std::endl;
+            s.pop();
         }
     }
     return (0);
