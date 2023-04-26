@@ -6,7 +6,7 @@
 /*   By: yelousse <yelousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 17:34:58 by yelousse          #+#    #+#             */
-/*   Updated: 2023/04/13 01:22:38 by yelousse         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:22:47 by yelousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int ac, char **av)
 {
     if (ac == 2)
     {
-        int end, tmp, start = -1;
+        int end, rep = 0, tmp, start = -1;
         std::string k, str = av[1];
         std::stack<std::string> s;
         tmp = -1;
@@ -33,7 +33,8 @@ int main(int ac, char **av)
             {
                 if (k.find_first_of("/*-+") != std::string::npos)
                 {
-                    if (check < 2)
+                    rep++;
+                    if (check < 2 || rep >= 2)
                     {
                         std::cout << "Error" << std::endl;
                         return (1);
@@ -53,6 +54,7 @@ int main(int ac, char **av)
                 }
                 else
                 {
+                    rep = 0;
                     s.push(k);
                     check++;
                 }
