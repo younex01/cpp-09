@@ -3,16 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yelousse <yelousse@student.42.fr>          +#+  +:+       +#+         #
+#    By: youness <youness@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/16 21:27:31 by yelousse          #+#    #+#              #
-#    Updated: 2023/04/16 21:30:18 by yelousse         ###   ########.fr        #
+#    Created: 2023/04/09 17:35:03 by yelousse          #+#    #+#              #
+#    Updated: 2023/04/21 20:42:00 by youness          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-SRC = main.cpp PmergeMe.cpp
-NAME = PmergeMe
+SRC = main.cpp
+NAME = main
 
 OBJCS = ${SRC:.cpp=.o}
 
@@ -28,7 +27,7 @@ $(NAME): $(OBJCS)
 	@$(CPP) $(FLAGS) $(SRC) -o $(NAME)
 	@echo "Compiling Successfull"
 
-%.o:%.cpp PmergeMe.hpp
+%.o:%.cpp main.hpp
 	$(CPP) $(FLAGS) -c $< -o $@
 
 clean:

@@ -1,17 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yelousse <yelousse@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 21:27:37 by yelousse          #+#    #+#             */
-/*   Updated: 2023/04/16 21:42:52 by yelousse         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef MAIN_HPP
+#define MAIN_HPP
 
-#ifndef PMERGEME_HPP
-#define PMERGEME_HPP
-
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <deque>
+#include <string>
+#include <sstream>
+#include <sys/time.h>
 
 #endif
