@@ -6,11 +6,31 @@
 /*   By: yelousse <yelousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:46:08 by yelousse          #+#    #+#             */
-/*   Updated: 2023/04/09 17:10:52 by yelousse         ###   ########.fr       */
+/*   Updated: 2023/05/04 01:53:38 by yelousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+int check_digit(std::string str)
+{
+    std::cout << str << std::endl;
+    std::string::iterator i = str.begin();
+    int c = 0;
+    while(i != str.end())
+    {
+        if (*i >= '0' && *i <= '9')
+        {
+            i++;
+            c += (*i);
+        }
+        else
+            return (0);
+    }
+    // if (c == 0)
+    //     return (0);
+    return (1);
+}
 
 int main(int ac, char **av)
 {
@@ -22,7 +42,6 @@ int main(int ac, char **av)
         std::ifstream input_data("data.csv");
         std::map<std::string, float> data;
         std::string filename = av[1];
-        // std::cout << filename << std::endl;
         std::ifstream input_file(filename.c_str());
         if (!input_data.is_open())
         {
@@ -55,27 +74,39 @@ int main(int ac, char **av)
             return 1;
         }
         std::getline(input_file, line);
+        if (line.compare("date | value") != 0)
+        {
+            std::cout << "Error : '" << line << "'" << std::endl;
+            exit (0);
+        }
         while(std::getline(input_file, line))
         {
             size_t pos = 0;
             std::string date, value;
             float nb, result = 0.0;
             std::string year, month, day;
-            if (line.find("|") == std::string::npos)
+            if (line.find("|") == std::string::npos && !line.empty())
             {
                 std::cout << "Error: bad input => " << line << std::endl;
             }
             else if ((pos = line.find("|")) != std::string::npos) {
                 date = line.substr(0, pos);
-                value = line.erase(0, pos + 1);
-                nb = std::atof(value.c_str());
-                // parse the date
-                year = date.substr(0, 4);
-                day = date.substr(8, 10);
-                month = date.substr(5, 6);
-                month = month.erase(2,4);
+                if (date.empty())
+                {
+                    std::cout << "Error: bad input => " << line << std::endl;
+                }
+                else
+                {
+                    value = line.erase(0, pos + 1);
+                    nb = std::atof(value.c_str());
+                    // parse the date
+                    year = date.substr(0, 4);
+                    day = date.substr(8, 10);
+                    month = date.substr(5, 6);
+                    month = month.erase(2,4);
+                }
                 // parse the value
-                if (day >= "32" || month > "12" || (year <= "2009" && month <= "01" && day < "02"))
+                if (day >= "32" || month > "12" || (year <= "2009" && month <= "01" && day < "02") || check_digit(year) || check_digit(month) || check_digit(day))
                 {
                     std::cout << "Error: bad input => ";
                     std::cout << year << "-" << month << "-" << day << std::endl;

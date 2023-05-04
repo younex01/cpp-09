@@ -2,3 +2,9 @@ fist line (date | value ) if not exit
 year and day if not a degit
 spaces between lines
 if not a date or a value exit (ex = | |)
+
+
+ex01
+
+/ 0 
+size of stack shold be 1
