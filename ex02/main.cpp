@@ -64,12 +64,8 @@ void    merge_sort(T& v, int l, int r)
 {
     if (r - l > 100) {
         int m = l + (r - l) / 2;
-
-        // std::cout << "m =" << m << "| l =" << l << std::endl;
-
         merge_sort(v, l, m);
         merge_sort(v, m + 1, r);
-
         merge(v, l, m, r);
     }
     insert_sort(v, l, r);
@@ -152,12 +148,12 @@ int main(int ac, char **av)
 
         useconds = (end.tv_usec - start.tv_usec) ;
         seconds = (end.tv_sec - start.tv_sec) ;
-        double time = seconds + useconds / 1000000.00;
+        double time = seconds * 1000000.00 + useconds;
         std::cout << "Time to process a range of " << v.size() << " elements with std::vector " << time  << " us" << std::endl;
 
         useconds_ = (end_.tv_usec - start_.tv_usec) ;
         seconds_ = (end_.tv_sec - start_.tv_sec) ;
-        double time_ = seconds_ + useconds_ / 1000000.00;
+        double time_ = seconds_ * 1000000.00 + useconds_;
         std::cout << "Time to process a range of " << q.size() << " elements with std::deque " << time_  << " us" << std::endl;
     }
     else

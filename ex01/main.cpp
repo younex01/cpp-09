@@ -6,7 +6,7 @@
 /*   By: yelousse <yelousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 17:34:58 by yelousse          #+#    #+#             */
-/*   Updated: 2023/04/16 21:22:47 by yelousse         ###   ########.fr       */
+/*   Updated: 2023/05/04 01:16:23 by yelousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,13 @@ int main(int ac, char **av)
             tmp = end;
         }
         // std::cout << "<----------->\n";
-        while(s.size() != 0)
+        if(s.size() != 0)
         {
             std::cout << s.top() << std::endl;
             s.pop();
         }
+        std::cout << s.size() << std::endl;
+        
     }
     return (0);
 }
